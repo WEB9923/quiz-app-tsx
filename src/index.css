@@ -11,3 +11,9 @@
     text-decoration:none;
     -webkit-tap-highlight-color: transparent;
 }
+
+body {
+    @apply bg-gray-800;
+    font-family: sans-serif;
+}
+

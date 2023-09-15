@@ -1,3 +1,222 @@
 {
-  "quiz": []
+  "quiz": [
+    {
+      "id": 1,
+      "question": "Where is the correct place to insert a JavaScript?",
+      "correct": "Both the <head> section and the <body> section are correct",
+      "answers": [
+        "Both the <head> section and the <body> section are correct",
+        "The <body> section",
+        "The <head> section"
+      ],
+      "category": "javascript"
+    },
+    {
+      "id": 2,
+      "question": "How do you create a function in JavaScript?",
+      "correct": "function myFunction()",
+      "answers": [
+        "function = myFunction()",
+        "function myFunction()",
+        "function:myFunction()"
+      ],
+      "category": "javascript"
+    },
+    {
+      "id": 3,
+      "question": "How can you add a comment in a JavaScript?\n\n",
+      "correct": "//This is a comment",
+      "answers": [
+        "//This is a comment",
+        "<!--This is a comment-->",
+        "'This is a comment"
+      ],
+      "category": "javascript"
+    },
+    {
+      "id": 4,
+      "question": "JavaScript is the same as Java.",
+      "correct": "false",
+      "answers": [
+        "true",
+        "false"
+      ],
+      "category": "javascript"
+    },
+    {
+      "id": 5,
+      "question": "How can you detect the client's browser name?",
+      "correct": "navigator['appName']",
+      "answers": [
+        "browser['name']",
+        "client['navName']",
+        "navigator['appName']"
+      ],
+      "category": "javascript"
+    },
+    {
+      "id": 6,
+      "question": "What will the following code return: Boolean(10 > 9)",
+      "correct": "true",
+      "answers": [
+        "NaN",
+        "true",
+        "false"
+      ],
+      "category": "javascript"
+    },
+    {
+      "id": 7,
+      "question": "Is JavaScript case-sensitive?",
+      "correct": "yes",
+      "answers": [
+        "yes",
+        "no"
+      ],
+      "category": "javascript"
+    },
+    {
+      "id": 8,
+      "question": "React component names must begin with an uppercase letter.",
+      "correct": "true",
+      "answers": [
+        "false",
+        "true"
+      ],
+      "category": "react"
+    },
+    {
+      "id": 9,
+      "question": "Which operator can be used to conditionally render a React component?",
+      "correct": "&&",
+      "answers": [
+        "||",
+        "??",
+        "::",
+        "&&"
+      ],
+      "category": "react"
+    },
+    {
+      "id": 10,
+      "question": "When rendering a list using the JavaScript map() method, what is required for each element rendered?",
+      "correct": "key",
+      "answers": [
+        "id",
+        "data",
+        "key",
+        "index"
+      ],
+      "category": "react"
+    },
+    {
+      "id": 11,
+      "question": "Find the bug in this code:",
+      "code": "function car({make, model}) {\n  return <h1>{make} {model}</h1>;\n};",
+      "correct": "The first letter of the function must be capitalized",
+      "answers": [
+        "Wrap the return in a fragment",
+        "Add parenthesis around the return value",
+        "Remove the return statement",
+        "The first letter of the function must be capitalized"
+      ],
+      "category": "react"
+    },
+    {
+      "id": 12,
+      "question": "What is the output of the following code?",
+      "code": "const make = 'Ford';\nconst model = 'Mustang';\nconst car = { make, model };\nconsole.log(car);",
+      "correct": "{make: 'Ford', model: 'Mustang'}",
+      "answers": [
+        "{make: 'Ford', model: 'Mustang'}",
+        "{{make: 'Ford', model: 'Mustang'}}",
+        "{car: {make: 'Ford', model: 'Mustang'}}",
+        "{car: 'Ford', car: 'Mustang'}}"
+      ],
+      "category": "javascript"
+    },
+    {
+      "id": 13,
+      "question": "What does CSS stand for?\n\n",
+      "correct": "Cascading Style Sheets",
+      "answers": [
+        "Colorful Style Sheets",
+        "Computer Style Sheets",
+        "Creative Style Sheets",
+        "Cascading Style Sheets"
+      ],
+      "category": "css"
+    },
+    {
+      "id": 14,
+      "question": "What does HTML stand for?",
+      "correct": "Hyper Text Markup Language",
+      "answers": [
+        "Hyper Text Markup Language",
+        "Hyperlinks and Text Markup Language",
+        "Home Tool Markup Language"
+      ],
+      "category": "HTML"
+    },
+    {
+      "id": 15,
+      "question": "Which character is used to indicate an end tag?",
+      "correct": "/",
+      "answers": [
+        "*",
+        "<",
+        "^",
+        "/"
+      ],
+      "category": "HTML"
+    },
+    {
+      "id": 16,
+      "question": "How can you open a link in a new tab/browser window?",
+      "correct": "<a href=\"url\" target=\"_blank\">",
+      "answers": [
+        "<a href=\"url\" target=\"new\">",
+        "<a href=\"url\" target=\"_blank\">",
+        "<a href=\"url\" new>"
+      ],
+      "category": "HTML"
+    },
+    {
+      "id": 17,
+      "question": "Can you guess what will be the output of the code below?",
+      "code": "console.log(typeof NaN);\n",
+      "correct": "Number",
+      "answers": [
+        "NaN",
+        "Number",
+        "Undefined",
+        "Null"
+      ],
+      "category": "javascript"
+    },
+    {
+      "id": 18,
+      "question": "Do you know what will be the output of this code?",
+      "code": "console.log(0.1 + 0.2 == 0.3);",
+      "correct": "false",
+      "answers": [
+        "false",
+        "true"
+      ],
+      "category": "javascript"
+    },
+    {
+      "id": 19,
+      "question": "Do you know what will be the output of this code?",
+      "code": "let array = [1, 2, 3];\narray[6] = 9;\nconsole.log(array[5]);",
+      "correct": "undefined",
+      "answers": [
+        "1",
+        "2",
+        "9",
+        "undefined"
+      ],
+      "category": "javascript"
+    }
+  ]
 }
