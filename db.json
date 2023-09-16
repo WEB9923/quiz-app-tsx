@@ -217,6 +217,18 @@
         "undefined"
       ],
       "category": "javascript"
+    },
+    {
+      "id": 20,
+      "question": "Do you know what will be the output of this code?",
+      "code": "setTimeout(() => console.log(\"hello timeout\"), 0);\nconsole.log(\"hello console\");\nsetTimeout(() => console.log(\"hello timeout 2\"),1000);\nconsole.log(\"hello console 2\");\n",
+      "correct": "hello console\nhello console 2\nhello timeout\nhello timeout 2",
+      "answers": [
+        "hello timeout\nhello console\nhello console2\nhello timeout 2",
+        "hello console\nhello timeout\nhello console 2\nhello timeout 2",
+        "hello console\nhello console 2\nhello timeout\nhello timeout 2"
+      ],
+      "category": "javascript"
     }
   ]
 }

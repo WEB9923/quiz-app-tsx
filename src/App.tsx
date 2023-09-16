@@ -18,11 +18,13 @@ export default function App(): JSX.Element {
   const [inputValue, setInputValue] = useState<string>("");
   const [isStart, setIsStart] = useState<boolean>(true);
   const [isQuiz, setIsQuiz] = useState<boolean>(false);
+  const [score, setScore] = useState<number>(0);
   const [isFinish, setIsFinish] = useState<boolean>(false);
+  const [selected, setSelected] = useState<string | null>(null);
 
   const [data, setData] = useState<IData[] | null>(null);
 
-  const [questionIndex, setQuestionIndex] = useState<number>(18);
+  const [questionIndex, setQuestionIndex] = useState<number>(0);
   //fns
   const inputChange = (event: React.ChangeEvent<HTMLInputElement>): void => setInputValue(event.target.value);
 
@@ -45,6 +47,23 @@ export default function App(): JSX.Element {
       console.error(err);
     }
   }
+  //game logic
+  const handleAnswerSelected = (answer: string): void => {
+    setSelected(answer);
+  }
+  const handleNextQuestion = () => {
+    if(data && selected === data[questionIndex].correct) {
+      setScore(score + 1);
+    }
+    setSelected(null);
+    setQuestionIndex(questionIndex + 1);
+  }
+
+  const handleEndQuiz = (): void => {
+    setIsFinish(true);
+    setIsQuiz(false);
+  }
+
   useEffect(() => {
     getQuizes();
   }, []);
@@ -52,7 +71,7 @@ export default function App(): JSX.Element {
   return (
     <>
       <div className={"w-full h-screen flex items-center justify-center"}>
-        <div className="md:w-[450px] w-[350px] overflow-hidden">
+        <div className="md:w-[600px] w-[350px] overflow-hidden">
           {isStart && <Start
             inputValue={inputValue}
             inputChange={inputChange}
@@ -61,8 +80,13 @@ export default function App(): JSX.Element {
           {isQuiz && <Quiz
             data={data}
             questionIndex={questionIndex}
+            handleAnswerSelected={handleAnswerSelected}
+            handleNextQuestion={handleNextQuestion}
+            selected={selected}
+            score={score}
+            handleEndQuiz={handleEndQuiz}
           />}
-          <Finish />
+          {isFinish && <Finish />}
         </div>
       </div>
     </>
