@@ -2,6 +2,7 @@ import {JSX} from "react";
 import {motion, AnimatePresence} from "framer-motion";
 import Question from "./Question.tsx";
 import {RiCopperCoinFill} from "react-icons/ri";
+import Button from "./Button.tsx";
 
 interface IData {
   id: number;
@@ -12,7 +13,7 @@ interface IData {
   category: string
 }
 export default function Quiz({data, questionIndex, handleAnswerSelected, handleNextQuestion, selected, score, handleEndQuiz}:
-{ data: IData[],
+{ data: IData[] | null,
   questionIndex: number,
   handleAnswerSelected: (answer: string) => void,
   handleNextQuestion: () => void,
@@ -38,30 +39,35 @@ export default function Quiz({data, questionIndex, handleAnswerSelected, handleN
           className="w-full min-h-[250px] h-auto rounded-md bg-gray-700 p-2 py-3 relative"
         >
           <div className="flex items-center justify-between px-2 border-b-[1px] border-gray-800 py-2 select-none">
-            <h2 className={"text-yellow-500 font-bold flex items-center gap-1 text-[18px]"}>
-              <RiCopperCoinFill size={22}/>
-              {score}
-            </h2>
+            <div className="flex items-center gap-3">
+              <h2 className={"text-yellow-500 font-bold flex items-center gap-1 text-[18px]"}>
+                <RiCopperCoinFill size={22}/>
+                {score}
+              </h2>
+              <span className={"bg-gray-800 px-3 py-1 rounded-md text-gray-400 font-medium"}>
+                {questionIndex + 1 + "/" + data?.length}
+              </span>
+            </div>
             <span className={"bg-gray-800 px-3 py-1 rounded-md text-gray-400 font-medium capitalize"}>
-              {data[questionIndex]?.category}
+              {data?.[questionIndex]?.category}
             </span>
           </div>
           <div className="py-2">
             <Question
-              question={data[questionIndex].question}
+              question={data?.[questionIndex].question}
               classname={"first-letter:font-extrabold font-medium text-center capitalize text-gray-400 text-[20px] mb-3"}
             />
             <code className={""}>
-              {data[questionIndex].code &&
+              {data?.[questionIndex].code &&
                 <pre className={"bg-gray-800 rounded-md px-2 py-3 text-purple-400 w-full border-4 border-gray-900 break-words whitespace-pre-wrap"}>
-                  {data[questionIndex].code}
+                  {data?.[questionIndex].code}
                 </pre>
               }
             </code>
           </div>
           <div className="py-2">
             <ul>
-              {data[questionIndex]?.answers.map((answer) => (
+              {data?.[questionIndex]?.answers.map((answer) => (
                 <motion.li
                   initial={{
                     scale: 1
@@ -82,17 +88,15 @@ export default function Quiz({data, questionIndex, handleAnswerSelected, handleN
             </ul>
           </div>
           <div className="">
-            {questionIndex + 1 < data.length ? <button
-              onClick={handleNextQuestion}
-              className={"px-6 h-10 w-full rounded-md bg-emerald-500 text-gray-300 font-bold text-[18px] capitalize"}
-            >
-              next
-            </button> : <button
-              onClick={handleEndQuiz}
-              className={"px-6 h-10 w-full rounded-md bg-emerald-500 text-gray-300 font-bold text-[18px] capitalize"}
-            >
-              finish
-            </button>}
+            {questionIndex + 1 < data?.length ? <Button
+              text={"next"}
+              clickEvent={handleNextQuestion}
+              classname={"px-6 h-10 w-full rounded-md bg-emerald-500 text-gray-300 font-bold text-[18px] capitalize"}
+            /> : <Button
+              text={"finish"}
+              clickEvent={handleEndQuiz}
+              classname={"px-6 h-10 w-full rounded-md bg-emerald-500 text-gray-300 font-bold text-[18px] capitalize"}
+            />}
           </div>
         </motion.div>
       </AnimatePresence>

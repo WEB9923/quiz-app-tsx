@@ -38,7 +38,7 @@ export default function Start({ inputChange, inputValue, submitForm }: IStart): 
           <Button
             text={"submit"}
             inputValue={inputValue}
-            classname={"px-6 h-14 w-full rounded-md bg-emerald-500 text-gray-300 font-bold text-[18px] capitalize disabled:opacity-40 disabled:pointer-events-none"}
+            classname={`${!inputValue || inputValue.length < 3 ? "pointer-events-none opacity-60" : ""} px-6 h-14 w-full rounded-md bg-emerald-500 text-gray-300 font-bold text-[18px] capitalize disabled:opacity-40 disabled:pointer-events-none`}
           />
         </motion.form>
       </AnimatePresence>

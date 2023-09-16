@@ -1,16 +1,33 @@
 import {JSX} from "react";
 import * as React from "react";
-
-export default function Button({ text, classname, clickEvent, inputValue }:
-  {text: string, classname: string, clickEvent?: React.MouseEventHandler<HTMLButtonElement>, inputValue?: string}
+import {motion} from "framer-motion";
+enum Type {
+  SPRING = "spring",
+  TWEEN = "tween"
+}
+export default function Button({ text, classname, clickEvent }:
+  {
+    text: string,
+    classname: string,
+    clickEvent?: React.MouseEventHandler<HTMLButtonElement>,
+    inputValue?: string
+  }
 ): JSX.Element {
   return (
-      <button
+      <motion.button
+        initial={{
+          scale: 1
+        }} whileTap={{
+          scale: 0.95
+        }} transition={{
+          duration: 0.1,
+          type: `${Type.SPRING}`,
+          stiffness: 250
+        }}
         onClick={clickEvent}
-        disabled={!inputValue}
         className={classname}
       >
         {text}
-      </button>
+      </motion.button>
   );
 }

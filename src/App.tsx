@@ -56,7 +56,9 @@ export default function App(): JSX.Element {
       setScore(score + 1);
     }
     setSelected(null);
-    setQuestionIndex(questionIndex + 1);
+    if(selected !== null) {
+      setQuestionIndex(questionIndex + 1);
+    }
   }
 
   const handleEndQuiz = (): void => {
