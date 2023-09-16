@@ -1,4 +1,4 @@
-import React, {JSX} from "react";
+import {JSX} from "react";
 import {motion, AnimatePresence} from "framer-motion";
 import Question from "./Question.tsx";
 import {RiCopperCoinFill} from "react-icons/ri";
@@ -61,17 +61,17 @@ export default function Quiz({data, questionIndex, handleAnswerSelected, handleN
           </div>
           <div className="py-2">
             <ul>
-              {questionIndex < data.length && data[questionIndex]?.answers.map((answer) => (
+              {data[questionIndex]?.answers.map((answer) => (
                 <motion.li
                   initial={{
                     scale: 1
                   }} whileTap={{
-                  scale: 0.95
-                }} transition={{
-                  duration: 0.1,
-                  type: "spring",
-                  stiffness: 250
-                }}
+                    scale: 0.95
+                  }} transition={{
+                    duration: 0.1,
+                    type: "spring",
+                    stiffness: 250
+                  }}
                   key={answer}
                   className={`${selected?.toLowerCase() === answer?.toLowerCase() ? "before:w-1 before:h-full before:absolute before:left-0 before:top-0 before:bg-slate-600 before:rounded-md" : ""} relative bg-gray-800 text-gray-400 w-full py-3 px-2 rounded-md cursor-pointer my-2 hover:opacity-90 select-none`}
                   onClick={() => handleAnswerSelected(answer)}
@@ -82,7 +82,7 @@ export default function Quiz({data, questionIndex, handleAnswerSelected, handleN
             </ul>
           </div>
           <div className="">
-            {questionIndex < data?.length ? <button
+            {questionIndex + 1 < data.length ? <button
               onClick={handleNextQuestion}
               className={"px-6 h-10 w-full rounded-md bg-emerald-500 text-gray-300 font-bold text-[18px] capitalize"}
             >
