@@ -101,6 +101,7 @@ export default function App(): JSX.Element {
           />}
           {isFinish && <Finish
             score={score}
+            inputValue={inputValue}
             resetQuiz={handleResetQuiz}
             restartQuiz={restartQuiz}
           />}
