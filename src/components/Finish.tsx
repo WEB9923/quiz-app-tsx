@@ -7,12 +7,12 @@ import Button from "./Button.tsx";
 import {RiCopperCoinFill} from "react-icons/ri";
 
 export default function Finish({score, resetQuiz, restartQuiz, inputValue}:
-                                 {
-                                   score: number,
-                                   resetQuiz: () => void,
-                                   restartQuiz: () => void,
-                                   inputValue: string
-                                 }): JSX.Element {
+{
+  score: number,
+  resetQuiz: () => void,
+  restartQuiz: () => void,
+  inputValue: string
+}): JSX.Element {
   return (
     <>
       <AnimatePresence>
