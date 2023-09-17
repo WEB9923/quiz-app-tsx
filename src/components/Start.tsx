@@ -1,7 +1,10 @@
 import {JSX} from "react";
 import Button from "./Button.tsx";
 import * as React from "react";
-import {AnimatePresence, motion} from "framer-motion";
+import {
+  AnimatePresence,
+  motion
+} from "framer-motion";
 
 interface IStart {
   inputValue: string;

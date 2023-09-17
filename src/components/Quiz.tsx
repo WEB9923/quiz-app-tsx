@@ -1,9 +1,11 @@
 import {JSX} from "react";
-import {motion, AnimatePresence} from "framer-motion";
+import {
+  motion,
+  AnimatePresence
+} from "framer-motion";
 import Question from "./Question.tsx";
 import {RiCopperCoinFill} from "react-icons/ri";
 import Button from "./Button.tsx";
-
 interface IData {
   id: number;
   question: string;
@@ -28,14 +30,14 @@ export default function Quiz({data, questionIndex, handleAnswerSelected, handleN
           initial={{
             scale: 0
           }} animate={{
-          scale: 1
-        }} transition={{
-          duration: .3,
-          type: "spring",
-          stiffness: 100
-        }} exit={{
-          scale: 0
-        }}
+            scale: 1
+          }} transition={{
+            duration: .3,
+            type: "spring",
+            stiffness: 100
+          }} exit={{
+            scale: 0
+          }}
           className="w-full min-h-[250px] h-auto rounded-md bg-gray-700 p-2 py-3 relative"
         >
           <div className="flex items-center justify-between px-2 border-b-[1px] border-gray-800 py-2 select-none">

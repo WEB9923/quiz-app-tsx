@@ -1,10 +1,13 @@
-import {JSX, useEffect, useState} from "react";
+import {
+  JSX,
+  useEffect,
+  useState
+} from "react";
 import Start from "./components/Start.tsx";
 import Finish from "./components/Finish.tsx";
 import Quiz from "./components/Quiz.tsx";
 import * as React from "react";
 import axios from "axios";
-
 interface IData {
   id: number;
   question: string;
@@ -13,7 +16,6 @@ interface IData {
   answers: string[],
   category: string
 }
-
 export default function App(): JSX.Element {
   const [inputValue, setInputValue] = useState<string>("");
   const [isStart, setIsStart] = useState<boolean>(true);
@@ -21,13 +23,12 @@ export default function App(): JSX.Element {
   const [score, setScore] = useState<number>(0);
   const [isFinish, setIsFinish] = useState<boolean>(false);
   const [selected, setSelected] = useState<string | null>(null);
-
   const [data, setData] = useState<IData[] | null>(null);
-
   const [questionIndex, setQuestionIndex] = useState<number>(0);
   //fns
-  const inputChange = (event: React.ChangeEvent<HTMLInputElement>): void => setInputValue(event.target.value);
-
+  const inputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setInputValue(event.target.value);
+  }
   const submitForm = (event: React.FormEvent<HTMLFormElement>): void | boolean => {
     event.preventDefault();
     if(inputValue === "" || inputValue === null || inputValue === undefined) {
@@ -60,16 +61,26 @@ export default function App(): JSX.Element {
       setQuestionIndex(questionIndex + 1);
     }
   }
-
   const handleEndQuiz = (): void => {
     setIsFinish(true);
     setIsQuiz(false);
   }
-
+  const handleResetQuiz = (): void => {
+    setIsQuiz(true);
+    setIsFinish(false);
+    setQuestionIndex(0);
+    setScore(0);
+  }
+  const restartQuiz = (): void => {
+    setIsQuiz(false);
+    setIsFinish(false);
+    setIsStart(true);
+    setQuestionIndex(0);
+    setScore(0);
+  }
   useEffect(() => {
     getQuizes();
   }, []);
-
   return (
     <>
       <div className={"w-full h-screen flex items-center justify-center"}>
@@ -88,7 +99,11 @@ export default function App(): JSX.Element {
             score={score}
             handleEndQuiz={handleEndQuiz}
           />}
-          {isFinish && <Finish />}
+          {isFinish && <Finish
+            score={score}
+            resetQuiz={handleResetQuiz}
+            restartQuiz={restartQuiz}
+          />}
         </div>
       </div>
     </>
