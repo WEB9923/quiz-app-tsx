@@ -27,17 +27,10 @@ export default function Quiz({data, questionIndex, handleAnswerSelected, handleN
     <>
       <AnimatePresence>
         <motion.div
-          initial={{
-            scale: 0
-          }} animate={{
-            scale: 1
-          }} transition={{
-            duration: .3,
-            type: "spring",
-            stiffness: 100
-          }} exit={{
-            scale: 0
-          }}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: .3, type: "spring", stiffness: 100 }}
+          exit={{ scale: 0 }}
           className="w-full min-h-[250px] h-auto rounded-md bg-gray-700 p-2 py-3 relative"
         >
           <div className="flex items-center justify-between px-2 border-b-[1px] border-gray-800 py-2 select-none">
@@ -71,15 +64,9 @@ export default function Quiz({data, questionIndex, handleAnswerSelected, handleN
             <ul>
               {data?.[questionIndex]?.answers.map((answer) => (
                 <motion.li
-                  initial={{
-                    scale: 1
-                  }} whileTap={{
-                    scale: 0.95
-                  }} transition={{
-                    duration: 0.1,
-                    type: "spring",
-                    stiffness: 250
-                  }}
+                  initial={{ scale: 1 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.1, type: "spring", stiffness: 250 }}
                   key={answer}
                   className={`${selected?.toLowerCase() === answer?.toLowerCase() ? "before:w-1 before:h-full before:absolute before:left-0 before:top-0 before:bg-slate-600 before:rounded-md" : ""} relative bg-gray-800 text-gray-400 w-full py-3 px-2 rounded-md cursor-pointer my-2 hover:opacity-90 select-none`}
                   onClick={() => handleAnswerSelected(answer)}

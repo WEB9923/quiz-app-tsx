@@ -83,15 +83,20 @@ export default function App(): JSX.Element {
     getQuizes();
   }, []);
   function Mouse(e: MouseEvent): void {
+    const {current} = ref;
     const x: number = e.clientX;
     const y: number = e.clientY;
-    if(ref.current) {
-      ref.current.style.left = `${x - (ref.current.clientWidth / 2)}px`;
-      ref.current.style.top = `${y - (ref.current.clientHeight / 2)}px`;
+    if(current) {
+      const { width, height }: {
+        width: number;
+        height: number;
+      } = current.getBoundingClientRect();
+      current.style.left = `${x - (width / 2)}px`;
+      current.style.top = `${y - (height / 2)}px`;
       if((e.clientX <= 0) || (e.clientY <= 0)) {
-        ref.current.style.display = "none";
+        current.style.display = "none";
       } else {
-        ref.current.style.display = "block";
+        current.style.display = "block";
       }
     }
   }
@@ -102,7 +107,10 @@ export default function App(): JSX.Element {
   return (
     <>
       <div className={"w-full h-screen flex items-center justify-center"}>
-        <div className="w-8 h-8 bg-[rgba(110,104,220,0.5)] rounded-full absolute z-50 pointer-events-none" ref={ref}/>
+        <div
+           className="w-8 h-8 bg-[rgba(110,104,220,0.5)] rounded-full absolute z-50 pointer-events-none"
+           ref={ref}
+        />
         <div className="md:w-[600px] w-[350px] overflow-hidden">
           {isStart && <Start
             inputValue={inputValue}
