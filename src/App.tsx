@@ -1,6 +1,6 @@
 import {
   JSX,
-  useEffect,
+  useEffect, useRef,
   useState
 } from "react";
 import Start from "./components/Start.tsx";
@@ -11,10 +11,10 @@ import axios from "axios";
 interface IData {
   id: number;
   question: string;
-  code?: string,
-  correct: string,
-  answers: string[],
-  category: string
+  code?: string;
+  correct: string;
+  answers: string[];
+  category: string;
 }
 export default function App(): JSX.Element {
   const [inputValue, setInputValue] = useState<string>("");
@@ -25,6 +25,7 @@ export default function App(): JSX.Element {
   const [selected, setSelected] = useState<string | null>(null);
   const [data, setData] = useState<IData[] | null>(null);
   const [questionIndex, setQuestionIndex] = useState<number>(0);
+  const ref = useRef<null | HTMLDivElement>(null);
   //fns
   const inputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setInputValue(event.target.value);
@@ -81,9 +82,27 @@ export default function App(): JSX.Element {
   useEffect(() => {
     getQuizes();
   }, []);
+  function Mouse(e: MouseEvent): void {
+    const x: number = e.clientX;
+    const y: number = e.clientY;
+    if(ref.current) {
+      ref.current.style.left = `${x - (ref.current.clientWidth / 2)}px`;
+      ref.current.style.top = `${y - (ref.current.clientHeight / 2)}px`;
+      if((e.clientX <= 0) || (e.clientY <= 0)) {
+        ref.current.style.display = "none";
+      } else {
+        ref.current.style.display = "block";
+      }
+    }
+  }
+  useEffect(() => {
+    window.addEventListener("mousemove", Mouse);
+    return () => window.removeEventListener("mousemove", Mouse);
+  }, []);
   return (
     <>
       <div className={"w-full h-screen flex items-center justify-center"}>
+        <div className="w-8 h-8 bg-[rgba(110,104,220,0.5)] rounded-full absolute z-50 pointer-events-none" ref={ref}/>
         <div className="md:w-[600px] w-[350px] overflow-hidden">
           {isStart && <Start
             inputValue={inputValue}
